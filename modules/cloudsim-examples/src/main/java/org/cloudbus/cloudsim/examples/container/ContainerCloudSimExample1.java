@@ -161,10 +161,10 @@ public class ContainerCloudSimExample1 {
             /**
              * 10- The address for logging the statistics of the VMs, containers in the data center.
              */
-            String logAddress = "~/Results";
+            String logAddress = "~/ContainerCloudSimExample1";
 
             @SuppressWarnings("unused")
-			PowerContainerDatacenter e = (PowerContainerDatacenter) createDatacenter("datacenter",
+            PowerContainerDatacenter e = (PowerContainerDatacenter) createDatacenter("datacenter",
                     PowerContainerDatacenterCM.class, hostList, vmAllocationPolicy, containerAllocationPolicy,
                     getExperimentName("ContainerCloudSimExample-1", String.valueOf(overBookingFactor)),
                     ConstantsExamples.SCHEDULING_INTERVAL, logAddress,
@@ -201,7 +201,6 @@ public class ContainerCloudSimExample1 {
             Log.printLine("Unwanted errors happen");
         }
     }
-
 
 
     /**

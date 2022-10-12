@@ -22,9 +22,17 @@ public class ContainerOverbooking {
          * The experiments can be repeated for (repeat - runtime +1) times.
          * Please set these values as the arguments of the main function or set them bellow:
          */
-        int runTime = Integer.parseInt(args[0]);
-        int repeat = Integer.parseInt(args[1]);
-        for (int i = 10; i < repeat; i += 10) {
+        int runTime = 86400;
+        int overBookingFactorStep = 5;
+        int minOverBookingFactor = 5;
+        int maxOverBookingFactor = 100;
+        if (args.length >= 1) {
+            runTime = Integer.parseInt(args[0]);
+        }
+        if (args.length >= 2) {
+            maxOverBookingFactor = Integer.parseInt(args[1]);
+        }
+        for (int i = minOverBookingFactor; i <= maxOverBookingFactor; i += overBookingFactorStep) {
             boolean enableOutput = true;
             boolean outputToFile = true;
             /**
@@ -34,7 +42,7 @@ public class ContainerOverbooking {
             /**
              * The output folder for the logs. The log files would be located in this folder.
              */
-            String outputFolder = "/Results";
+            String outputFolder = "~/ContainerOverbooking";
             /**
              * The allocation policy for VMs. It has the under utilization and over utilization thresholds used for
              * determining the underloaded and oberloaded hosts.
