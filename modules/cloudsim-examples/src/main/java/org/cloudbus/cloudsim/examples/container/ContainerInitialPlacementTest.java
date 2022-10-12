@@ -51,10 +51,6 @@ public class ContainerInitialPlacementTest {
              */
             String containerSelectionPolicy = "MaxUsage";
             /**
-             * The allocation policy used for allocating containers to VMs.
-             */
-            String containerAllocationPolicy = "MostFull";
-            /**
              * The host selection policy determines which hosts should be selected as the migration destination.
              */
             String hostSelectionPolicy = "FirstFit";
@@ -70,18 +66,21 @@ public class ContainerInitialPlacementTest {
 
             int OverBookingFactor = 80;
 
-
-            new RunnerInitiator(
-                    enableOutput,
-                    outputToFile,
-                    inputFolder,
-                    outputFolder,
-                    vmAllocationPolicy,
-                    containerAllocationPolicy,
-                    vmSelectionPolicy,
-                    containerSelectionPolicy,
-                    hostSelectionPolicy,
-                    OverBookingFactor, Integer.toString(i), outputFolder);
+            /**
+             * The allocation policy used for allocating containers to VMs.
+             */
+            for (String containerAllocationPolicy : new String[]{"Simple", "LeastFull", "MostFull", "FirstFit", "Random"})
+                new RunnerInitiator(
+                        enableOutput,
+                        outputToFile,
+                        inputFolder,
+                        outputFolder,
+                        vmAllocationPolicy,
+                        containerAllocationPolicy,
+                        vmSelectionPolicy,
+                        containerSelectionPolicy,
+                        hostSelectionPolicy,
+                        OverBookingFactor, Integer.toString(i), outputFolder);
 
         }
 

@@ -47,6 +47,10 @@ public class ContainerSelectionTest {
              */
             String vmAllocationPolicy = "MSThreshold-Under_0.80_0.70"; // DVFS policy without VM migrations
             /**
+             * The allocation policy used for allocating containers to VMs.
+             */
+            String containerAllocationPolicy = "FirstFit";
+            /**
              * The host selection policy determines which hosts should be selected as the migration destination.
              */
             String hostSelectionPolicy = "FirstFit";
@@ -66,21 +70,17 @@ public class ContainerSelectionTest {
              * The selection policy for containers where a container migration is triggered.
              */
             for (String containerSelectionPolicy : new String[]{"MaxUsage", "Cor"}) {
-                /**
-                 * The allocation policy used for allocating containers to VMs.
-                 */
-                for (String containerAllocationPolicy : new String[]{"Simple", "LeastFull", "MostFull", "FirstFit", "Random"})
-                    new RunnerInitiator(
-                            enableOutput,
-                            outputToFile,
-                            inputFolder,
-                            outputFolder,
-                            vmAllocationPolicy,
-                            containerAllocationPolicy,
-                            vmSelectionPolicy,
-                            containerSelectionPolicy,
-                            hostSelectionPolicy,
-                            OverBookingFactor, Integer.toString(i), outputFolder);
+                new RunnerInitiator(
+                        enableOutput,
+                        outputToFile,
+                        inputFolder,
+                        outputFolder,
+                        vmAllocationPolicy,
+                        containerAllocationPolicy,
+                        vmSelectionPolicy,
+                        containerSelectionPolicy,
+                        hostSelectionPolicy,
+                        OverBookingFactor, Integer.toString(i), outputFolder);
             }
         }
 
