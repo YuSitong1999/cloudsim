@@ -11,6 +11,7 @@ import org.cloudbus.cloudsim.util.ExecutionTimeMeasurer;
 import java.util.*;
 
 /**
+ * select and migrate vm
  * Created by sareh on 28/07/15.
  */
 public abstract class PowerContainerVmAllocationPolicyMigrationAbstract extends PowerContainerVmAllocationAbstract {

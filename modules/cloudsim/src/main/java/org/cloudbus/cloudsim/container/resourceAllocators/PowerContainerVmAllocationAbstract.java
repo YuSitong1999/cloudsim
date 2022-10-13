@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
+ * allocate vm with power
  * Created by sareh on 14/07/15.
  */
 public abstract  class PowerContainerVmAllocationAbstract extends ContainerVmAllocationPolicy{

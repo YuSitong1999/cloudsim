@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * migrate vm
  * Created by sareh on 28/07/15.
  */
 public abstract class PowerContainerVmSelectionPolicy {

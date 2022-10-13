@@ -11,6 +11,7 @@ import org.cloudbus.cloudsim.container.vmSelectionPolicies.PowerContainerVmSelec
 import java.util.List;
 
 /**
+ * select and migrate container, chose aim host, with over- and under- utilization threshold
  * Created by sareh on 18/08/15.
  */
 public class PowerContainerVmAllocationPolicyMigrationStaticThresholdMCUnderUtilized extends PowerContainerVmAllocationPolicyMigrationAbstractContainerHostSelectionUnderUtilizedAdded{

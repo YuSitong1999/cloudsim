@@ -217,7 +217,7 @@ public abstract class RunnerAbs {
 
 
     protected ContainerVmAllocationPolicy getVmAllocationPolicy(String vmAllocationPolicyName, String vmSelectionPolicyName, String containerSelectionPolicyName, String hostSelectionPolicyName) {
-        Object vmAllocationPolicy = null;
+        ContainerVmAllocationPolicy vmAllocationPolicy = null;
         PowerContainerVmSelectionPolicy vmSelectionPolicy = null;
         PowerContainerSelectionPolicy containerSelectionPolicy = null;
         HostSelectionPolicy hostSelectionPolicy = null;
@@ -229,12 +229,14 @@ public abstract class RunnerAbs {
 
 
         if (vmAllocationPolicyName.startsWith("MSThreshold-Over_")) {
+            // migrate container, over utilization threshold
             double overUtilizationThreshold = Double.parseDouble(vmAllocationPolicyName.substring(18));
             vmAllocationPolicy = new PowerContainerVmAllocationPolicyMigrationStaticThresholdMC(hostList, vmSelectionPolicy,
                     containerSelectionPolicy, hostSelectionPolicy, overUtilizationThreshold,
                     ConstantsExamples.VM_TYPES,ConstantsExamples.VM_PES, ConstantsExamples.VM_RAM, ConstantsExamples.VM_BW,
                     ConstantsExamples.VM_SIZE, ConstantsExamples.VM_MIPS);
         } else if (vmAllocationPolicyName.startsWith("MSThreshold-Under_")) {
+            // migrate container, over utilization threshold and under utilization threshold
             double overUtilizationThreshold = Double.parseDouble(vmAllocationPolicyName.substring(18, 22));
             double underUtilizationThreshold = Double.parseDouble(vmAllocationPolicyName.substring(24));
             vmAllocationPolicy = new PowerContainerVmAllocationPolicyMigrationStaticThresholdMCUnderUtilized(hostList,
@@ -243,7 +245,7 @@ public abstract class RunnerAbs {
                     ConstantsExamples.VM_SIZE, ConstantsExamples.VM_MIPS );
 
         } else if (vmAllocationPolicyName.startsWith("VMThreshold-Under_")) {
-
+            // migrate vm, over utilization threshold and under utilization threshold
             double overUtilizationThreshold = Double.parseDouble(vmAllocationPolicyName.substring(18, 22));
             double underUtilizationThreshold = Double.parseDouble(vmAllocationPolicyName.substring(24));
             vmAllocationPolicy = new PowerContainerVmAllocationPolicyMigrationAbstractHostSelection(hostList, vmSelectionPolicy, hostSelectionPolicy, overUtilizationThreshold, underUtilizationThreshold);
@@ -254,7 +256,7 @@ public abstract class RunnerAbs {
             System.exit(0);
         }
 
-        return (ContainerVmAllocationPolicy) vmAllocationPolicy;
+        return vmAllocationPolicy;
     }
 
     protected ContainerAllocationPolicy getContainerAllocationPolicy(String containerAllocationPolicyName) {

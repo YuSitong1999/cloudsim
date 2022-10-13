@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * allocate vm
  * Created by sareh on 10/07/15.
  */
 public abstract class ContainerVmAllocationPolicy {
